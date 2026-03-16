@@ -23,10 +23,17 @@
   box-shadow:0 24px 80px rgba(0,0,0,.45);
 }
 .login-logo{
-  width:64px;height:64px;border-radius:18px;margin:0 auto 20px;
-  background:linear-gradient(135deg,#0066cc,#1a85e0);
+  width:80px;height:80px;border-radius:22px;margin:0 auto 20px;
+  background:linear-gradient(145deg,#1a2a4a 0%,#0d1829 60%,#091220 100%);
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 6px 20px rgba(0,102,204,.4);
+  box-shadow:0 8px 32px rgba(0,0,0,.45), 0 2px 8px rgba(0,100,255,.2), inset 0 1px 1px rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.08);
+  position:relative;overflow:hidden;
+}
+.login-logo::after{
+  content:"";position:absolute;top:0;left:0;right:0;height:50%;
+  background:linear-gradient(180deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,0) 100%);
+  border-radius:22px 22px 0 0;
 }
 .login-title{font-size:20px;font-weight:700;color:#071830;margin-bottom:4px}
 .login-sub{font-size:12px;color:#5a82b0;margin-bottom:28px;text-transform:uppercase;letter-spacing:.6px}
@@ -382,19 +389,22 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--t1);min-h
 <div id="loginScreen">
   <div class="login-card">
     <div class="login-logo">
-      <svg width="36" height="36" viewBox="0 0 34 34" fill="none">
-        <rect x="16.5" y="6" width="1.2" height="17" rx=".6" fill="rgba(255,255,255,.9)"/>
-        <polygon points="17,22 13,28 21,28" fill="rgba(255,255,255,.9)"/>
-        <rect x="11" y="28" width="12" height="1.8" rx=".9" fill="rgba(255,255,255,.9)"/>
-        <line x1="5" y1="10" x2="29" y2="10" stroke="rgba(255,255,255,.9)" stroke-width="1.3" stroke-linecap="round"/>
-        <line x1="7.5" y1="10" x2="7.5" y2="14" stroke="rgba(255,255,255,.7)" stroke-width=".9" stroke-dasharray="2 1.2"/>
-        <line x1="26.5" y1="10" x2="26.5" y2="14" stroke="rgba(255,255,255,.7)" stroke-width=".9" stroke-dasharray="2 1.2"/>
-        <circle cx="7.5" cy="11.5" r="3.3" fill="#FF8C00"/>
-        <path d="M7.5 8.2C8.2 7 9.5 7.4 9 8.4C8.5 7.8 7.5 8.2 7.5 8.2Z" fill="#52b788"/>
-        <circle cx="26.5" cy="11.5" r="3.1" fill="#5D2E0C"/>
-        <rect x="25" y="9.8" width="1.4" height=".45" rx=".22" fill="#ff6b6b" transform="rotate(-25 25 9.8)"/>
-        <rect x="26.8" y="9.2" width="1.4" height=".45" rx=".22" fill="#ffe66d" transform="rotate(15 26.8 9.2)"/>
-        <rect x="25.5" y="10.8" width="1.2" height=".45" rx=".22" fill="#a8e6cf" transform="rotate(-10 25.5 10.8)"/>
+      <svg width="36" height="36" viewBox="0 0 32 32" fill="none">
+        <defs>
+          <linearGradient id="lsh" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="rgba(255,255,255,.22)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </linearGradient>
+        </defs>
+        <rect x="15.3" y="5" width="1.4" height="18" rx=".7" fill="rgba(255,255,255,.9)"/>
+        <rect x="10" y="23" width="12" height="2" rx="1" fill="rgba(255,255,255,.85)"/>
+        <rect x="13" y="21" width="6" height="2.2" rx="1" fill="rgba(255,255,255,.7)"/>
+        <rect x="5" y="9.2" width="22" height="1.4" rx=".7" fill="rgba(255,255,255,.9)"/>
+        <line x1="7" y1="10.6" x2="7" y2="15" stroke="rgba(255,255,255,.7)" stroke-width="1" stroke-dasharray="1.5 1"/>
+        <line x1="25" y1="10.6" x2="25" y2="15" stroke="rgba(255,255,255,.7)" stroke-width="1" stroke-dasharray="1.5 1"/>
+        <path d="M4 15 Q7 18.5 10 15" stroke="rgba(255,255,255,.9)" stroke-width="1.2" fill="rgba(255,255,255,.15)" stroke-linecap="round"/>
+        <path d="M22 15 Q25 18.5 28 15" stroke="rgba(255,255,255,.9)" stroke-width="1.2" fill="rgba(255,255,255,.15)" stroke-linecap="round"/>
+        <ellipse cx="16" cy="8" rx="6" ry="2" fill="url(#lsh)" opacity=".5"/>
       </svg>
     </div>
     <div class="login-title">Centro Clínico de Nutrição</div>
@@ -416,24 +426,30 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--t1);min-h
 <div class="hdr">
   <div class="hbrand">
     <div class="logo">
-      <svg width="32" height="32" viewBox="0 0 34 34" fill="none">
-        <rect x="16.5" y="6" width="1.2" height="17" rx=".6" fill="rgba(255,255,255,.9)"/>
-        <polygon points="17,22 13,28 21,28" fill="rgba(255,255,255,.9)"/>
-        <rect x="11" y="28" width="12" height="1.8" rx=".9" fill="rgba(255,255,255,.9)"/>
-        <line x1="5" y1="10" x2="29" y2="10" stroke="rgba(255,255,255,.9)" stroke-width="1.3" stroke-linecap="round"/>
-        <line x1="7.5" y1="10" x2="7.5" y2="14" stroke="rgba(255,255,255,.7)" stroke-width=".9" stroke-dasharray="2 1.2"/>
-        <line x1="26.5" y1="10" x2="26.5" y2="14" stroke="rgba(255,255,255,.7)" stroke-width=".9" stroke-dasharray="2 1.2"/>
-        <circle cx="7.5" cy="11.5" r="3.3" fill="url(#og)"/>
-        <path d="M7.5 8.2C8.2 7 9.5 7.4 9 8.4C8.5 7.8 7.5 8.2 7.5 8.2Z" fill="#52b788"/>
-        <circle cx="26.5" cy="11.5" r="3.1" fill="url(#cg)"/>
-        <rect x="25" y="9.8" width="1.4" height=".45" rx=".22" fill="#ff6b6b" transform="rotate(-25 25 9.8)"/>
-        <rect x="26.8" y="9.2" width="1.4" height=".45" rx=".22" fill="#ffe66d" transform="rotate(15 26.8 9.2)"/>
-        <rect x="25.5" y="10.8" width="1.2" height=".45" rx=".22" fill="#a8e6cf" transform="rotate(-10 25.5 10.8)"/>
-        <rect x="27.2" y="10.5" width="1.2" height=".45" rx=".22" fill="#ff6b6b" transform="rotate(30 27.2 10.5)"/>
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
         <defs>
-          <radialGradient id="og" cx="35%" cy="35%"><stop offset="0%" stop-color="#FFB347"/><stop offset="100%" stop-color="#FF7300"/></radialGradient>
-          <radialGradient id="cg" cx="35%" cy="35%"><stop offset="0%" stop-color="#7B4429"/><stop offset="100%" stop-color="#3D1A08"/></radialGradient>
+          <linearGradient id="hsh" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="rgba(255,255,255,.18)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </linearGradient>
         </defs>
+        <!-- pole -->
+        <rect x="15.3" y="5" width="1.4" height="18" rx=".7" fill="rgba(255,255,255,.9)"/>
+        <!-- base -->
+        <rect x="10" y="23" width="12" height="2" rx="1" fill="rgba(255,255,255,.85)"/>
+        <rect x="13" y="21" width="6" height="2.2" rx="1" fill="rgba(255,255,255,.7)"/>
+        <!-- beam -->
+        <rect x="5" y="9.2" width="22" height="1.4" rx=".7" fill="rgba(255,255,255,.9)"/>
+        <!-- left chain -->
+        <line x1="7" y1="10.6" x2="7" y2="15" stroke="rgba(255,255,255,.7)" stroke-width="1" stroke-dasharray="1.5 1"/>
+        <!-- right chain -->
+        <line x1="25" y1="10.6" x2="25" y2="15" stroke="rgba(255,255,255,.7)" stroke-width="1" stroke-dasharray="1.5 1"/>
+        <!-- left pan -->
+        <path d="M4 15 Q7 18.5 10 15" stroke="rgba(255,255,255,.9)" stroke-width="1.2" fill="rgba(255,255,255,.15)" stroke-linecap="round"/>
+        <!-- right pan -->
+        <path d="M22 15 Q25 18.5 28 15" stroke="rgba(255,255,255,.9)" stroke-width="1.2" fill="rgba(255,255,255,.15)" stroke-linecap="round"/>
+        <!-- shine -->
+        <ellipse cx="16" cy="8" rx="6" ry="2" fill="url(#hsh)" opacity=".5"/>
       </svg>
     </div>
     <div class="hdiv"></div>
@@ -450,7 +466,7 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--t1);min-h
       <button class="thb" onclick="setTheme('noite')">🌙</button>
     </div>
     <button class="btn bo" onclick="openBlock()">🔒 Bloquear</button>
-    <button class="btn bo" onclick="doPrint()">📄 PDF</button>
+    <button class="btn bo" onclick="doExportPNG()">🖼 PNG</button>
     <button class="btn bp" onclick="exportXL()">📊 Excel</button>
   </div>
   <button class="mob-menu-btn" onclick="openMobMenu()">☰</button>
@@ -473,7 +489,7 @@ body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--t1);min-h
   </div>
   <div class="mob-drawer-title" style="margin-top:8px">Ações</div>
   <button class="btn bo" style="width:100%;justify-content:flex-start" onclick="closeMobMenu();openBlock()">🔒 Bloquear horários</button>
-  <button class="btn bo" style="width:100%;justify-content:flex-start" onclick="closeMobMenu();doPrint()">📄 Exportar PDF</button>
+  <button class="btn bo" style="width:100%;justify-content:flex-start" onclick="closeMobMenu();doExportPNG()">🖼 Exportar PNG</button>
   <button class="btn bp" style="width:100%;justify-content:flex-start" onclick="closeMobMenu();exportXL()">📊 Exportar Excel</button>
 </div>
 
@@ -915,8 +931,293 @@ async function delSlot(){
   await pushToCloud(key,null);
 }
 
-// ═══ PDF ═══
-function doPrint(){ buildPS(); toast("Abrindo impressão…"); setTimeout(()=>window.print(),400); }
+// ═══ PNG EXPORT ═══
+function doExportPNG(){
+  const w=weeks[curW]; if(!w) return;
+  toast("🖼 Gerando imagem…");
+  setTimeout(()=>_drawPNG(w), 100);
+}
+
+function _drawPNG(w){
+  const [,mo]=MONTHS[curM].k.split("-").map(Number);
+  const now=new Date();
+
+  // ── Canvas setup (A4 landscape @ 150dpi, 2x retina) ──
+  const LW=1240, LH=877;
+  const canvas=document.createElement("canvas");
+  canvas.width=LW*2; canvas.height=LH*2;
+  const ctx=canvas.getContext("2d");
+  ctx.scale(2,2);
+
+  const M=32; // margin
+  const font=`'Poppins',system-ui,sans-serif`;
+
+  // ── Background ──
+  ctx.fillStyle="#f0f5ff";
+  ctx.fillRect(0,0,LW,LH);
+
+  // ── HEADER BAR ──
+  const hH=54;
+  _rrect(ctx,M,M,LW-M*2,hH,10,"#0066cc");
+  // subtle gradient shine
+  const hg=ctx.createLinearGradient(M,M,M,M+hH);
+  hg.addColorStop(0,"rgba(255,255,255,.18)"); hg.addColorStop(1,"rgba(255,255,255,0)");
+  _rrect(ctx,M,M,LW-M*2,hH,10,hg);
+
+  // logo box
+  _rrect(ctx,M+8,M+7,40,40,8,"rgba(255,255,255,.15)");
+  _drawScale(ctx, M+28, M+27, 22, "rgba(255,255,255,.95)");
+
+  // title
+  ctx.fillStyle="#fff";
+  ctx.font=`700 15px ${font}`;
+  ctx.fillText("Centro Clínico de Nutrição — Anhanguera", M+58, M+24);
+  ctx.font=`400 9px ${font}`;
+  ctx.fillStyle="rgba(255,255,255,.72)";
+  ctx.fillText("AGENDA DE ATENDIMENTOS · USO INTERNO", M+58, M+39);
+
+  // week range (right side)
+  const wStr=`Semana ${_fd(w[0])} a ${_fd(w[4])}`;
+  const mStr=`${MONTHS[curM].n} 2026 · ${_Z(now.getDate())}/${_Z(now.getMonth()+1)} às ${_Z(now.getHours())}:${_Z(now.getMinutes())}`;
+  ctx.font=`700 13px ${font}`; ctx.fillStyle="#fff";
+  const ww=ctx.measureText(wStr).width;
+  ctx.fillText(wStr, LW-M-8-ww, M+24);
+  ctx.font=`400 8.5px ${font}`; ctx.fillStyle="rgba(255,255,255,.72)";
+  const mw=ctx.measureText(mStr).width;
+  ctx.fillText(mStr, LW-M-8-mw, M+39);
+
+  // ── TABLE geometry ──
+  const tY=M+hH+10;
+  const tH=LH-M-tY;
+  const timeW=44;
+  const tW=LW-M*2-timeW;
+  const dayW=tW/5;
+  const salaW=dayW/2;
+  const dayHdrH=26;
+  const salaHdrH=17;
+  const slotH=(tH-dayHdrH-salaHdrH)/TIMES.length;
+
+  // ── TABLE BACKGROUND ──
+  _rrect(ctx,M,tY,LW-M*2,tH,8,"#fff");
+
+  // ── Draw each day ──
+  w.forEach((date,di)=>{
+    const inMo=date.getMonth()+1===mo;
+    const dKey=dk(date);
+    const hol=HOL[dKey];
+    const x=M+timeW+di*dayW;
+
+    // Day header
+    const isToday=dk(date)===dk(new Date());
+    const dayBg=hol?"#fee2e2": isToday?"#1a4faa":"#0066cc";
+    const dayOpacity=inMo?1:.35;
+    ctx.globalAlpha=dayOpacity;
+    ctx.fillStyle=dayBg;
+    ctx.fillRect(x, tY, dayW, dayHdrH);
+    // subtle gradient
+    const dg=ctx.createLinearGradient(x,tY,x,tY+dayHdrH);
+    dg.addColorStop(0,"rgba(255,255,255,.12)"); dg.addColorStop(1,"rgba(0,0,0,.04)");
+    ctx.fillStyle=dg; ctx.fillRect(x, tY, dayW, dayHdrH);
+
+    ctx.fillStyle=hol?"#b91c1c":"#fff";
+    ctx.font=`700 10px ${font}`;
+    ctx.textAlign="center";
+    ctx.fillText(`${WKD[date.getDay()].substring(0,3).toUpperCase()} ${_fd(date)}`, x+dayW/2, tY+17);
+    ctx.globalAlpha=1;
+
+    if(hol){
+      // holiday spanning
+      ctx.fillStyle="#fff1f0";
+      ctx.fillRect(x, tY+dayHdrH, dayW, tH-dayHdrH);
+      ctx.fillStyle="#e05";
+      ctx.font=`700 9px ${font}`;
+      ctx.textAlign="center";
+      ctx.fillText("🔴 "+hol, x+dayW/2, tY+dayHdrH+salaHdrH+slotH*3);
+      ctx.font=`400 8px ${font}`; ctx.fillStyle="#999";
+      ctx.fillText("Sem atendimentos", x+dayW/2, tY+dayHdrH+salaHdrH+slotH*3+14);
+    } else {
+      // Sala headers
+      [1,2].forEach(sala=>{
+        const sx=x+(sala-1)*salaW;
+        const s1=sala===1;
+        ctx.fillStyle=s1?"#dbeafe":"#fef3c7";
+        ctx.fillRect(sx, tY+dayHdrH, salaW, salaHdrH);
+        // bottom border
+        ctx.fillStyle=s1?"#1d4ed8":"#b45309";
+        ctx.fillRect(sx, tY+dayHdrH+salaHdrH-2, salaW, 2);
+        ctx.fillStyle=s1?"#1d4ed8":"#b45309";
+        ctx.font=`700 7.5px ${font}`;
+        ctx.textAlign="center";
+        ctx.fillText(`S${sala}`, sx+salaW/2, tY+dayHdrH+salaHdrH-5);
+      });
+
+      // Slots
+      TIMES.forEach((t,ti)=>{
+        [1,2].forEach(sala=>{
+          const sx=x+(sala-1)*salaW;
+          const sy=tY+dayHdrH+salaHdrH+ti*slotH;
+          const key=`${dKey}_${sala}_${t}`;
+          const a=appts[key];
+
+          // slot background
+          let bg="#f8faff";
+          if(a?.blocked) bg="#e8edf5";
+          else if(a?.p){
+            const st=a.s||"ativo";
+            bg=st==="cancelado"?"#fee2e2":st==="faltou"?"#fef9c3":st==="remarcado"?"#ede9fe":"#dbeafe";
+          }
+          ctx.fillStyle=bg;
+          ctx.fillRect(sx, sy, salaW, slotH);
+
+          if(a?.blocked){
+            // hatching
+            ctx.save();
+            ctx.rect(sx,sy,salaW,slotH); ctx.clip();
+            ctx.strokeStyle="rgba(0,0,0,.06)"; ctx.lineWidth=1;
+            for(let i=-slotH;i<salaW+slotH;i+=6){
+              ctx.beginPath(); ctx.moveTo(sx+i,sy); ctx.lineTo(sx+i+slotH,sy+slotH); ctx.stroke();
+            }
+            ctx.restore();
+            ctx.fillStyle="#94a3b8"; ctx.font=`600 7.5px ${font}`;
+            ctx.textAlign="center";
+            ctx.fillText("🔒 Fechado", sx+salaW/2, sy+slotH/2+3);
+          } else if(a?.p){
+            const st=a.s||"ativo";
+            const nameColor=st==="cancelado"?"#b91c1c":st==="faltou"?"#854d0e":st==="remarcado"?"#5b21b6":"#1e3a8a";
+            const subColor=st==="cancelado"?"#b91c1c":"#5a82b0";
+            // status badge
+            if(st!=="ativo"){
+              const bLabel=st==="cancelado"?"CANC":st==="faltou"?"FALTOU":"REMAR";
+              const bBg=st==="cancelado"?"#fecaca":st==="faltou"?"#fde68a":"#c4b5fd";
+              const bTx=st==="cancelado"?"#b91c1c":st==="faltou"?"#854d0e":"#5b21b6";
+              ctx.font=`700 6px ${font}`; ctx.textAlign="left";
+              const bw=ctx.measureText(bLabel).width+6;
+              _rrect(ctx,sx+salaW-bw-3,sy+3,bw,10,3,bBg);
+              ctx.fillStyle=bTx; ctx.fillText(bLabel,sx+salaW-bw,sy+11);
+            }
+            // patient name
+            ctx.fillStyle=nameColor;
+            ctx.font=`${st==="cancelado"?"700":"700"} 9px ${font}`;
+            ctx.textAlign="left";
+            const nameX=sx+5, maxW=salaW-10;
+            let name=a.p;
+            if(ctx.measureText(name).width>maxW){
+              while(ctx.measureText(name+"…").width>maxW && name.length>1) name=name.slice(0,-1);
+              name+="…";
+            }
+            if(st==="cancelado"){
+              // strikethrough
+              ctx.fillText(name, nameX, sy+14);
+              ctx.strokeStyle=nameColor; ctx.lineWidth=1;
+              ctx.beginPath();
+              ctx.moveTo(nameX, sy+10); ctx.lineTo(nameX+ctx.measureText(name).width, sy+10);
+              ctx.stroke();
+            } else {
+              ctx.fillText(name, nameX, sy+14);
+            }
+            // phone
+            ctx.fillStyle=subColor; ctx.font=`400 7.5px ${font}`;
+            let tel="📞 "+(a.t||"—");
+            if(ctx.measureText(tel).width>maxW){tel=tel.slice(0,Math.floor(tel.length*maxW/ctx.measureText(tel).width))+"…";}
+            ctx.fillText(tel, nameX, sy+24);
+            // team
+            if(a.a||a.m){
+              ctx.fillStyle="#94a3b8"; ctx.font=`400 7px ${font}`;
+              let team=[a.a,a.m].filter(Boolean).join(" · ");
+              if(ctx.measureText(team).width>maxW){team=team.slice(0,Math.floor(team.length*maxW/ctx.measureText(team).width))+"…";}
+              ctx.fillText(team, nameX, sy+33);
+            }
+          } else {
+            // empty
+            ctx.fillStyle="#c8d8f0"; ctx.font=`400 11px ${font}`;
+            ctx.textAlign="center";
+            ctx.fillText("+", sx+salaW/2, sy+slotH/2+4);
+          }
+        });
+      });
+    }
+
+    // right border per day
+    ctx.strokeStyle="#bdd4ed"; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(x+dayW,tY); ctx.lineTo(x+dayW,tY+tH); ctx.stroke();
+  });
+
+  // ── Time column ──
+  ctx.fillStyle="#e8f0fd";
+  ctx.fillRect(M, tY+dayHdrH, timeW, tH-dayHdrH);
+  // time label header
+  ctx.fillStyle="#0066cc"; ctx.fillRect(M, tY, timeW, dayHdrH);
+  ctx.fillStyle="#fff"; ctx.font=`700 9px ${font}`; ctx.textAlign="center";
+  ctx.fillText("H", M+timeW/2, tY+17);
+
+  TIMES.forEach((t,ti)=>{
+    const sy=tY+dayHdrH+salaHdrH+ti*slotH;
+    // alternating subtle bg
+    if(ti%2===0){ ctx.fillStyle="rgba(0,60,180,.04)"; ctx.fillRect(M,sy,timeW,slotH); }
+    ctx.fillStyle="#1a4270"; ctx.font=`700 8.5px ${font}`; ctx.textAlign="center";
+    ctx.fillText(t, M+timeW/2, sy+slotH/2+3);
+    // horizontal grid line
+    ctx.strokeStyle="#bdd4ed"; ctx.lineWidth=.6;
+    ctx.beginPath(); ctx.moveTo(M,sy); ctx.lineTo(LW-M,sy); ctx.stroke();
+  });
+
+  // ── Outer table border ──
+  ctx.strokeStyle="#7aaad8"; ctx.lineWidth=1.5;
+  _rrectStroke(ctx,M,tY,LW-M*2,tH,8);
+
+  // ── FOOTER ──
+  ctx.fillStyle="#5a82b0"; ctx.font=`400 8px ${font}`; ctx.textAlign="left";
+  ctx.fillText("Centro Clínico de Nutrição · Setor de Nutrição · Anhanguera · Uso interno da equipe", M, LH-10);
+  ctx.textAlign="right";
+  ctx.fillText(`Semana ${_fd(w[0])} a ${_fd(w[4])} · ${MONTHS[curM].n} 2026`, LW-M, LH-10);
+
+  // ── Download ──
+  const a=document.createElement("a");
+  a.download=`Agenda_${_fd(w[0]).replace("/","-")}_${_fd(w[4]).replace("/","-")}_${MONTHS[curM].l}.png`;
+  a.href=canvas.toDataURL("image/png",1.0);
+  a.click();
+  toast("✓ Imagem salva!");
+}
+
+function _rrect(ctx,x,y,w,h,r,fill){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r); ctx.closePath();
+  ctx.fillStyle=fill; ctx.fill();
+}
+function _rrectStroke(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r); ctx.closePath();
+  ctx.stroke();
+}
+function _drawScale(ctx,cx,cy,size,color){
+  const s=size/22;
+  ctx.strokeStyle=color; ctx.fillStyle=color; ctx.lineWidth=1.2*s;
+  ctx.lineCap="round";
+  // pole
+  ctx.beginPath(); ctx.moveTo(cx,cy-8*s); ctx.lineTo(cx,cy+9*s); ctx.stroke();
+  // base
+  ctx.fillRect(cx-6*s,cy+8*s,12*s,2*s);
+  // beam
+  ctx.beginPath(); ctx.moveTo(cx-10*s,cy-5*s); ctx.lineTo(cx+10*s,cy-5*s); ctx.stroke();
+  // left chain
+  ctx.setLineDash([1.5*s,1*s]);
+  ctx.beginPath(); ctx.moveTo(cx-9*s,cy-4*s); ctx.lineTo(cx-9*s,cy); ctx.stroke();
+  // right chain
+  ctx.beginPath(); ctx.moveTo(cx+9*s,cy-4*s); ctx.lineTo(cx+9*s,cy); ctx.stroke();
+  ctx.setLineDash([]);
+  // left pan
+  ctx.beginPath(); ctx.moveTo(cx-12*s,cy); ctx.quadraticCurveTo(cx-9*s,cy+4*s,cx-6*s,cy); ctx.stroke();
+  // right pan
+  ctx.beginPath(); ctx.moveTo(cx+6*s,cy); ctx.quadraticCurveTo(cx+9*s,cy+4*s,cx+12*s,cy); ctx.stroke();
+}
+function _fd(d){return `${_Z(d.getDate())}/${_Z(d.getMonth()+1)}`;}
+function _Z(n){return String(n).padStart(2,"0");}
 
 function buildPS(){
   const w=weeks[curW];if(!w)return;
@@ -969,16 +1270,15 @@ function buildPS(){
     <div class="ph">
       <div class="ph-l">
         <div class="ph-logo">
-          <svg width="22" height="22" viewBox="0 0 34 34" fill="none">
-            <rect x="16.5" y="6" width="1.2" height="17" rx=".6" fill="rgba(255,255,255,.9)"/>
-            <polygon points="17,22 13,28 21,28" fill="rgba(255,255,255,.9)"/>
-            <rect x="11" y="28" width="12" height="1.8" rx=".9" fill="rgba(255,255,255,.9)"/>
-            <line x1="5" y1="10" x2="29" y2="10" stroke="rgba(255,255,255,.9)" stroke-width="1.3" stroke-linecap="round"/>
-            <line x1="7.5" y1="10" x2="7.5" y2="14" stroke="rgba(255,255,255,.7)" stroke-width=".9" stroke-dasharray="2 1.2"/>
-            <line x1="26.5" y1="10" x2="26.5" y2="14" stroke="rgba(255,255,255,.7)" stroke-width=".9" stroke-dasharray="2 1.2"/>
-            <circle cx="7.5" cy="11.5" r="3.3" fill="#FF8C00"/>
-            <path d="M7.5 8.2C8.2 7 9.5 7.4 9 8.4C8.5 7.8 7.5 8.2 7.5 8.2Z" fill="#52b788"/>
-            <circle cx="26.5" cy="11.5" r="3.1" fill="#5D2E0C"/>
+          <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+            <rect x="15.3" y="4" width="1.4" height="18" rx=".7" fill="rgba(255,255,255,.9)"/>
+            <rect x="10" y="22" width="12" height="2" rx="1" fill="rgba(255,255,255,.85)"/>
+            <rect x="13" y="20" width="6" height="2.2" rx="1" fill="rgba(255,255,255,.7)"/>
+            <rect x="4" y="8.5" width="24" height="1.4" rx=".7" fill="rgba(255,255,255,.9)"/>
+            <line x1="6.5" y1="9.9" x2="6.5" y2="14" stroke="rgba(255,255,255,.7)" stroke-width="1" stroke-dasharray="1.5 1"/>
+            <line x1="25.5" y1="9.9" x2="25.5" y2="14" stroke="rgba(255,255,255,.7)" stroke-width="1" stroke-dasharray="1.5 1"/>
+            <path d="M3.5 14 Q6.5 17.5 9.5 14" stroke="rgba(255,255,255,.9)" stroke-width="1.2" fill="rgba(255,255,255,.15)" stroke-linecap="round"/>
+            <path d="M22.5 14 Q25.5 17.5 28.5 14" stroke="rgba(255,255,255,.9)" stroke-width="1.2" fill="rgba(255,255,255,.15)" stroke-linecap="round"/>
           </svg>
         </div>
         <div>
