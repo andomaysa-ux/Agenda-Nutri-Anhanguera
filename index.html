@@ -756,7 +756,7 @@ function renderDays(days){
     card.innerHTML=`<div class="chdr">
       <div><div class="dn">${WKD[date.getDay()].substring(0,3).toUpperCase()}</div>
       <div class="dd">${fd(date)}</div></div>
-      ${cnt>0?`<div class="db">${cnt} pac.</div>`:""}
+      ${cnt>0?`<div class="db">${cnt} paciente${cnt>1?"s":""}</div>`:""}
     </div>`;
     if(hol){
       card.innerHTML+=`<div class="hol"><div class="hi">🔴</div><div class="hn">${hol}</div><div class="hd">Sem atendimentos</div></div>`;
