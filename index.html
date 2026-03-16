@@ -943,7 +943,7 @@ function _drawPNG(w){
   const now=new Date();
 
   // ── Canvas: muito maior pra fontes legíveis ──
-  const LW=2200, LH=1700;
+  const LW=2200, LH=2200;
   const canvas=document.createElement("canvas");
   canvas.width=LW*2; canvas.height=LH*2;
   const ctx=canvas.getContext("2d");
@@ -1046,7 +1046,7 @@ function _drawPNG(w){
               ctx.beginPath(); ctx.moveTo(sx+i,sy); ctx.lineTo(sx+i+slotH,sy+slotH); ctx.stroke();
             }
             ctx.restore();
-            ctx.fillStyle="#94a3b8"; ctx.font=`600 16px ${font}`; ctx.textAlign="center";
+            ctx.fillStyle="#94a3b8"; ctx.font=`600 20px ${font}`; ctx.textAlign="center";
             ctx.fillText("🔒 Fechado", sx+salaW/2, sy+slotH/2+5);
           } else if(a?.p){
             const st=a.s||"ativo";
@@ -1068,34 +1068,34 @@ function _drawPNG(w){
             }
 
             // ── Nome — grande e em destaque ──
-            ctx.font=`700 22px ${font}`; ctx.textAlign="left"; ctx.fillStyle=nameCol;
+            ctx.font=`700 28px ${font}`; ctx.textAlign="left"; ctx.fillStyle=nameCol;
             let name=a.p;
             if(ctx.measureText(name).width>maxW){
               while(ctx.measureText(name+"…").width>maxW && name.length>1) name=name.slice(0,-1);
               name+="…";
             }
-            ctx.fillText(name, sx+pad, sy+28);
+            ctx.fillText(name, sx+pad, sy+36);
             if(st==="cancelado"){
               ctx.strokeStyle=nameCol; ctx.lineWidth=1.5;
-              ctx.beginPath(); ctx.moveTo(sx+pad,sy+21); ctx.lineTo(sx+pad+ctx.measureText(name).width,sy+21); ctx.stroke();
+              ctx.beginPath(); ctx.moveTo(sx+pad,sy+28); ctx.lineTo(sx+pad+ctx.measureText(name).width,sy+28); ctx.stroke();
             }
 
             // ── Telefone ──
-            ctx.font=`400 17px ${font}`; ctx.fillStyle=subCol;
+            ctx.font=`400 21px ${font}`; ctx.fillStyle=subCol;
             let tel="📞 "+(a.t||"—");
             if(ctx.measureText(tel).width>maxW){
               while(ctx.measureText(tel+"…").width>maxW && tel.length>4) tel=tel.slice(0,-1); tel+="…";
             }
-            ctx.fillText(tel, sx+pad, sy+52);
+            ctx.fillText(tel, sx+pad, sy+64);
 
             // ── Aluno · Monitor ──
             if(a.a||a.m){
-              ctx.font=`700 16px ${font}`; ctx.fillStyle=teamCol;
+              ctx.font=`700 20px ${font}`; ctx.fillStyle=teamCol;
               let team=[a.a,a.m].filter(Boolean).join(" · ");
               if(ctx.measureText(team).width>maxW){
                 while(ctx.measureText(team+"…").width>maxW && team.length>2) team=team.slice(0,-1); team+="…";
               }
-              ctx.fillText(team, sx+pad, sy+74);
+              ctx.fillText(team, sx+pad, sy+92);
             }
           } else {
             ctx.fillStyle="#c0d0e8"; ctx.font=`300 20px ${font}`; ctx.textAlign="center";
