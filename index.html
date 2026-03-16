@@ -574,7 +574,7 @@ function startListening(){
 }
 
 async function pushToCloud(key,data){
-  if(!dbRef) return;
+  if(!dbRef){ toast("⚠️ dbRef nulo — reconecte a nuvem"); return; }
   setCloud("syn","☁️ Salvando…");
   try{
     if(data===null){
@@ -585,7 +585,7 @@ async function pushToCloud(key,data){
     setCloud("on","☁️ Online");
   }catch(e){
     setCloud("err","☁️ Erro ao salvar");
-    toast("⚠️ Não foi possível salvar na nuvem. Verifique a internet.");
+    toast("⚠️ Erro: "+((e&&e.message)||e||"desconhecido"));
   }
 }
 
@@ -830,19 +830,21 @@ async function saveSlot(){
   if(pac){
     const data={p:pac,t:document.getElementById("fTel").value.trim(),
       a:document.getElementById("fAlu").value.trim(),m:document.getElementById("fMon").value.trim(),s:curSt};
-    appts[editKey]=data;
+    const key=editKey;
+    appts[key]=data;
     saveLocal();
     closeM();renderW();
-    await pushToCloud(editKey,data);
+    await pushToCloud(key,data);
   } else {
     await delSlot();
   }
 }
 async function delSlot(){
   if(!editKey)return;
-  delete appts[editKey];
+  const key=editKey;
+  delete appts[key];
   saveLocal();closeM();renderW();
-  await pushToCloud(editKey,null);
+  await pushToCloud(key,null);
 }
 
 // ═══ PDF ═══
