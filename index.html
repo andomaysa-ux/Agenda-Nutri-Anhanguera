@@ -1031,11 +1031,14 @@ function _drawPNG(w){
           const a=appts[key];
 
           // background
-          let bg="#f7faff";
+          let bg="#ffffff";
           if(a?.blocked) bg="#e8edf5";
           else if(a?.p){
             const st=a.s||"ativo";
-            bg=st==="cancelado"?"#fee2e2":st==="faltou"?"#fef9c3":st==="remarcado"?"#ede9fe":"#dbeafe";
+            if(st==="cancelado") bg="#fee2e2";
+            else if(st==="faltou") bg="#fef9c3";
+            else if(st==="remarcado") bg="#ede9fe";
+            else bg=sala===1?"#dbeafe":"#fef3c7";
           }
           ctx.fillStyle=bg; ctx.fillRect(sx,sy,salaW,slotH);
 
