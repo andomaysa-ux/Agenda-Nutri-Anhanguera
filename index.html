@@ -942,116 +942,87 @@ function _drawPNG(w){
   const [,mo]=MONTHS[curM].k.split("-").map(Number);
   const now=new Date();
 
-  // ── Canvas setup (A4 landscape @ 150dpi, 2x retina) ──
-  const LW=1240, LH=877;
+  // ── Canvas: muito maior pra fontes legíveis ──
+  const LW=2200, LH=1700;
   const canvas=document.createElement("canvas");
   canvas.width=LW*2; canvas.height=LH*2;
   const ctx=canvas.getContext("2d");
   ctx.scale(2,2);
 
-  const M=32; // margin
+  const M=44;
   const font=`'Poppins',system-ui,sans-serif`;
 
   // ── Background ──
-  ctx.fillStyle="#f0f5ff";
+  ctx.fillStyle="#eef4fc";
   ctx.fillRect(0,0,LW,LH);
 
   // ── HEADER BAR ──
-  const hH=54;
-  _rrect(ctx,M,M,LW-M*2,hH,10,"#0066cc");
-  // subtle gradient shine
+  const hH=86;
+  _rrect(ctx,M,M,LW-M*2,hH,14,"#0066cc");
   const hg=ctx.createLinearGradient(M,M,M,M+hH);
   hg.addColorStop(0,"rgba(255,255,255,.18)"); hg.addColorStop(1,"rgba(255,255,255,0)");
-  _rrect(ctx,M,M,LW-M*2,hH,10,hg);
+  _rrect(ctx,M,M,LW-M*2,hH,14,hg);
 
-  // logo box
-  _rrect(ctx,M+8,M+7,40,40,8,"rgba(255,255,255,.15)");
-  _drawScale(ctx, M+28, M+27, 22, "rgba(255,255,255,.95)");
+  _rrect(ctx,M+14,M+13,60,60,12,"rgba(255,255,255,.15)");
+  _drawScale(ctx, M+44, M+43, 32, "rgba(255,255,255,.95)");
 
-  // title
-  ctx.fillStyle="#fff";
-  ctx.font=`700 15px ${font}`;
-  ctx.fillText("Centro Clínico de Nutrição — Anhanguera", M+58, M+24);
-  ctx.font=`400 9px ${font}`;
-  ctx.fillStyle="rgba(255,255,255,.72)";
-  ctx.fillText("AGENDA DE ATENDIMENTOS · USO INTERNO", M+58, M+39);
+  ctx.fillStyle="#fff"; ctx.textAlign="left";
+  ctx.font=`700 26px ${font}`;
+  ctx.fillText("Centro Clínico de Nutrição — Anhanguera", M+88, M+38);
+  ctx.font=`400 14px ${font}`; ctx.fillStyle="rgba(255,255,255,.75)";
+  ctx.fillText("AGENDA DE ATENDIMENTOS · USO INTERNO", M+88, M+62);
 
-  // week range (right side)
-  const wStr=`Semana ${_fd(w[0])} a ${_fd(w[4])}`;
-  const mStr=`${MONTHS[curM].n} 2026 · ${_Z(now.getDate())}/${_Z(now.getMonth()+1)} às ${_Z(now.getHours())}:${_Z(now.getMinutes())}`;
-  ctx.font=`700 13px ${font}`; ctx.fillStyle="#fff";
-  const ww=ctx.measureText(wStr).width;
-  ctx.fillText(wStr, LW-M-8-ww, M+24);
-  ctx.font=`400 8.5px ${font}`; ctx.fillStyle="rgba(255,255,255,.72)";
-  const mw=ctx.measureText(mStr).width;
-  ctx.fillText(mStr, LW-M-8-mw, M+39);
+  ctx.font=`700 22px ${font}`; ctx.fillStyle="#fff"; ctx.textAlign="right";
+  ctx.fillText(`Semana ${_fd(w[0])} a ${_fd(w[4])}`, LW-M-18, M+38);
+  ctx.font=`400 13px ${font}`; ctx.fillStyle="rgba(255,255,255,.75)";
+  ctx.fillText(`${MONTHS[curM].n} 2026 · ${_Z(now.getDate())}/${_Z(now.getMonth()+1)} às ${_Z(now.getHours())}:${_Z(now.getMinutes())}`, LW-M-18, M+62);
 
   // ── TABLE geometry ──
-  const tY=M+hH+10;
-  const tH=LH-M-tY;
-  const timeW=44;
-  const tW=LW-M*2-timeW;
-  const dayW=tW/5;
+  const tY=M+hH+14;
+  const tH=LH-M*1.5-tY;
+  const timeW=76;
+  const dayW=(LW-M*2-timeW)/5;
   const salaW=dayW/2;
-  const dayHdrH=26;
-  const salaHdrH=17;
+  const dayHdrH=44;
+  const salaHdrH=30;
   const slotH=(tH-dayHdrH-salaHdrH)/TIMES.length;
 
-  // ── TABLE BACKGROUND ──
-  _rrect(ctx,M,tY,LW-M*2,tH,8,"#fff");
+  _rrect(ctx,M,tY,LW-M*2,tH,12,"#fff");
 
-  // ── Draw each day ──
+  // ── Each day ──
   w.forEach((date,di)=>{
     const inMo=date.getMonth()+1===mo;
-    const dKey=dk(date);
-    const hol=HOL[dKey];
+    const dKey=dk(date); const hol=HOL[dKey];
     const x=M+timeW+di*dayW;
 
-    // Day header
-    const isToday=dk(date)===dk(new Date());
-    const dayBg=hol?"#fee2e2": isToday?"#1a4faa":"#0066cc";
-    const dayOpacity=inMo?1:.35;
-    ctx.globalAlpha=dayOpacity;
-    ctx.fillStyle=dayBg;
-    ctx.fillRect(x, tY, dayW, dayHdrH);
-    // subtle gradient
+    const dayBg=hol?"#fee2e2":dk(date)===dk(new Date())?"#1a4faa":"#0066cc";
+    ctx.globalAlpha=inMo?1:.35;
+    ctx.fillStyle=dayBg; ctx.fillRect(x,tY,dayW,dayHdrH);
     const dg=ctx.createLinearGradient(x,tY,x,tY+dayHdrH);
-    dg.addColorStop(0,"rgba(255,255,255,.12)"); dg.addColorStop(1,"rgba(0,0,0,.04)");
-    ctx.fillStyle=dg; ctx.fillRect(x, tY, dayW, dayHdrH);
+    dg.addColorStop(0,"rgba(255,255,255,.14)"); dg.addColorStop(1,"rgba(0,0,0,.04)");
+    ctx.fillStyle=dg; ctx.fillRect(x,tY,dayW,dayHdrH);
 
     ctx.fillStyle=hol?"#b91c1c":"#fff";
-    ctx.font=`700 10px ${font}`;
-    ctx.textAlign="center";
-    ctx.fillText(`${WKD[date.getDay()].substring(0,3).toUpperCase()} ${_fd(date)}`, x+dayW/2, tY+17);
+    ctx.font=`700 17px ${font}`; ctx.textAlign="center";
+    ctx.fillText(`${WKD[date.getDay()].substring(0,3).toUpperCase()} ${_fd(date)}`, x+dayW/2, tY+28);
     ctx.globalAlpha=1;
 
     if(hol){
-      // holiday spanning
-      ctx.fillStyle="#fff1f0";
-      ctx.fillRect(x, tY+dayHdrH, dayW, tH-dayHdrH);
-      ctx.fillStyle="#e05";
-      ctx.font=`700 9px ${font}`;
-      ctx.textAlign="center";
-      ctx.fillText("🔴 "+hol, x+dayW/2, tY+dayHdrH+salaHdrH+slotH*3);
-      ctx.font=`400 8px ${font}`; ctx.fillStyle="#999";
-      ctx.fillText("Sem atendimentos", x+dayW/2, tY+dayHdrH+salaHdrH+slotH*3+14);
+      ctx.fillStyle="#fff1f0"; ctx.fillRect(x,tY+dayHdrH,dayW,tH-dayHdrH);
+      ctx.fillStyle="#dc2626"; ctx.font=`700 15px ${font}`; ctx.textAlign="center";
+      ctx.fillText("🔴 "+hol, x+dayW/2, tY+dayHdrH+salaHdrH+slotH*3+10);
+      ctx.fillStyle="#aaa"; ctx.font=`400 13px ${font}`;
+      ctx.fillText("Sem atendimentos", x+dayW/2, tY+dayHdrH+salaHdrH+slotH*3+30);
     } else {
-      // Sala headers
       [1,2].forEach(sala=>{
-        const sx=x+(sala-1)*salaW;
-        const s1=sala===1;
-        ctx.fillStyle=s1?"#dbeafe":"#fef3c7";
-        ctx.fillRect(sx, tY+dayHdrH, salaW, salaHdrH);
-        // bottom border
+        const sx=x+(sala-1)*salaW; const s1=sala===1;
+        ctx.fillStyle=s1?"#dbeafe":"#fef3c7"; ctx.fillRect(sx,tY+dayHdrH,salaW,salaHdrH);
+        ctx.fillStyle=s1?"#1d4ed8":"#b45309"; ctx.fillRect(sx,tY+dayHdrH+salaHdrH-3,salaW,3);
         ctx.fillStyle=s1?"#1d4ed8":"#b45309";
-        ctx.fillRect(sx, tY+dayHdrH+salaHdrH-2, salaW, 2);
-        ctx.fillStyle=s1?"#1d4ed8":"#b45309";
-        ctx.font=`700 7.5px ${font}`;
-        ctx.textAlign="center";
-        ctx.fillText(`S${sala}`, sx+salaW/2, tY+dayHdrH+salaHdrH-5);
+        ctx.font=`700 13px ${font}`; ctx.textAlign="center";
+        ctx.fillText(`SALA ${sala}`, sx+salaW/2, tY+dayHdrH+salaHdrH-9);
       });
 
-      // Slots
       TIMES.forEach((t,ti)=>{
         [1,2].forEach(sala=>{
           const sx=x+(sala-1)*salaW;
@@ -1059,119 +1030,114 @@ function _drawPNG(w){
           const key=`${dKey}_${sala}_${t}`;
           const a=appts[key];
 
-          // slot background
-          let bg="#f8faff";
+          // background
+          let bg="#f7faff";
           if(a?.blocked) bg="#e8edf5";
           else if(a?.p){
             const st=a.s||"ativo";
             bg=st==="cancelado"?"#fee2e2":st==="faltou"?"#fef9c3":st==="remarcado"?"#ede9fe":"#dbeafe";
           }
-          ctx.fillStyle=bg;
-          ctx.fillRect(sx, sy, salaW, slotH);
+          ctx.fillStyle=bg; ctx.fillRect(sx,sy,salaW,slotH);
 
           if(a?.blocked){
-            // hatching
-            ctx.save();
-            ctx.rect(sx,sy,salaW,slotH); ctx.clip();
-            ctx.strokeStyle="rgba(0,0,0,.06)"; ctx.lineWidth=1;
-            for(let i=-slotH;i<salaW+slotH;i+=6){
+            ctx.save(); ctx.beginPath(); ctx.rect(sx,sy,salaW,slotH); ctx.clip();
+            ctx.strokeStyle="rgba(0,0,0,.07)"; ctx.lineWidth=1.5;
+            for(let i=-slotH;i<salaW+slotH;i+=9){
               ctx.beginPath(); ctx.moveTo(sx+i,sy); ctx.lineTo(sx+i+slotH,sy+slotH); ctx.stroke();
             }
             ctx.restore();
-            ctx.fillStyle="#94a3b8"; ctx.font=`600 7.5px ${font}`;
-            ctx.textAlign="center";
-            ctx.fillText("🔒 Fechado", sx+salaW/2, sy+slotH/2+3);
+            ctx.fillStyle="#94a3b8"; ctx.font=`600 16px ${font}`; ctx.textAlign="center";
+            ctx.fillText("🔒 Fechado", sx+salaW/2, sy+slotH/2+5);
           } else if(a?.p){
             const st=a.s||"ativo";
-            const nameColor=st==="cancelado"?"#b91c1c":st==="faltou"?"#854d0e":st==="remarcado"?"#5b21b6":"#1e3a8a";
-            const subColor=st==="cancelado"?"#b91c1c":"#5a82b0";
-            // status badge
+            const nameCol=st==="cancelado"?"#b91c1c":st==="faltou"?"#854d0e":st==="remarcado"?"#5b21b6":"#1e3a8a";
+            const subCol=st==="cancelado"?"#b91c1c":"#3a6090";
+            const teamCol="#7a9abf";
+            const pad=10; const maxW=salaW-pad*2;
+
+            // badge
             if(st!=="ativo"){
               const bLabel=st==="cancelado"?"CANC":st==="faltou"?"FALTOU":"REMAR";
               const bBg=st==="cancelado"?"#fecaca":st==="faltou"?"#fde68a":"#c4b5fd";
-              const bTx=st==="cancelado"?"#b91c1c":st==="faltou"?"#854d0e":"#5b21b6";
-              ctx.font=`700 6px ${font}`; ctx.textAlign="left";
-              const bw=ctx.measureText(bLabel).width+6;
-              _rrect(ctx,sx+salaW-bw-3,sy+3,bw,10,3,bBg);
-              ctx.fillStyle=bTx; ctx.fillText(bLabel,sx+salaW-bw,sy+11);
+              const bTx=st==="cancelado"?"#991b1b":st==="faltou"?"#78350f":"#4c1d95";
+              ctx.font=`700 10px ${font}`; ctx.textAlign="left";
+              const bw=ctx.measureText(bLabel).width+10;
+              _rrect(ctx,sx+salaW-bw-5,sy+6,bw,16,4,bBg);
+              ctx.fillStyle=bTx; ctx.textAlign="center";
+              ctx.fillText(bLabel, sx+salaW-bw/2-5, sy+18);
             }
-            // patient name
-            ctx.fillStyle=nameColor;
-            ctx.font=`${st==="cancelado"?"700":"700"} 9px ${font}`;
-            ctx.textAlign="left";
-            const nameX=sx+5, maxW=salaW-10;
+
+            // ── Nome — grande e em destaque ──
+            ctx.font=`700 22px ${font}`; ctx.textAlign="left"; ctx.fillStyle=nameCol;
             let name=a.p;
             if(ctx.measureText(name).width>maxW){
               while(ctx.measureText(name+"…").width>maxW && name.length>1) name=name.slice(0,-1);
               name+="…";
             }
+            ctx.fillText(name, sx+pad, sy+28);
             if(st==="cancelado"){
-              // strikethrough
-              ctx.fillText(name, nameX, sy+14);
-              ctx.strokeStyle=nameColor; ctx.lineWidth=1;
-              ctx.beginPath();
-              ctx.moveTo(nameX, sy+10); ctx.lineTo(nameX+ctx.measureText(name).width, sy+10);
-              ctx.stroke();
-            } else {
-              ctx.fillText(name, nameX, sy+14);
+              ctx.strokeStyle=nameCol; ctx.lineWidth=1.5;
+              ctx.beginPath(); ctx.moveTo(sx+pad,sy+21); ctx.lineTo(sx+pad+ctx.measureText(name).width,sy+21); ctx.stroke();
             }
-            // phone
-            ctx.fillStyle=subColor; ctx.font=`400 7.5px ${font}`;
+
+            // ── Telefone ──
+            ctx.font=`400 17px ${font}`; ctx.fillStyle=subCol;
             let tel="📞 "+(a.t||"—");
-            if(ctx.measureText(tel).width>maxW){tel=tel.slice(0,Math.floor(tel.length*maxW/ctx.measureText(tel).width))+"…";}
-            ctx.fillText(tel, nameX, sy+24);
-            // team
+            if(ctx.measureText(tel).width>maxW){
+              while(ctx.measureText(tel+"…").width>maxW && tel.length>4) tel=tel.slice(0,-1); tel+="…";
+            }
+            ctx.fillText(tel, sx+pad, sy+52);
+
+            // ── Aluno · Monitor ──
             if(a.a||a.m){
-              ctx.fillStyle="#94a3b8"; ctx.font=`400 7px ${font}`;
+              ctx.font=`700 16px ${font}`; ctx.fillStyle=teamCol;
               let team=[a.a,a.m].filter(Boolean).join(" · ");
-              if(ctx.measureText(team).width>maxW){team=team.slice(0,Math.floor(team.length*maxW/ctx.measureText(team).width))+"…";}
-              ctx.fillText(team, nameX, sy+33);
+              if(ctx.measureText(team).width>maxW){
+                while(ctx.measureText(team+"…").width>maxW && team.length>2) team=team.slice(0,-1); team+="…";
+              }
+              ctx.fillText(team, sx+pad, sy+74);
             }
           } else {
-            // empty
-            ctx.fillStyle="#c8d8f0"; ctx.font=`400 11px ${font}`;
-            ctx.textAlign="center";
-            ctx.fillText("+", sx+salaW/2, sy+slotH/2+4);
+            ctx.fillStyle="#c0d0e8"; ctx.font=`300 20px ${font}`; ctx.textAlign="center";
+            ctx.fillText("+", sx+salaW/2, sy+slotH/2+7);
           }
         });
       });
     }
 
-    // right border per day
     ctx.strokeStyle="#bdd4ed"; ctx.lineWidth=1;
     ctx.beginPath(); ctx.moveTo(x+dayW,tY); ctx.lineTo(x+dayW,tY+tH); ctx.stroke();
   });
 
   // ── Time column ──
-  ctx.fillStyle="#e8f0fd";
-  ctx.fillRect(M, tY+dayHdrH, timeW, tH-dayHdrH);
-  // time label header
-  ctx.fillStyle="#0066cc"; ctx.fillRect(M, tY, timeW, dayHdrH);
-  ctx.fillStyle="#fff"; ctx.font=`700 9px ${font}`; ctx.textAlign="center";
-  ctx.fillText("H", M+timeW/2, tY+17);
+  ctx.fillStyle="#0066cc"; ctx.fillRect(M,tY,timeW,dayHdrH);
+  const tHg=ctx.createLinearGradient(M,tY,M,tY+dayHdrH);
+  tHg.addColorStop(0,"rgba(255,255,255,.14)"); tHg.addColorStop(1,"rgba(0,0,0,.04)");
+  ctx.fillStyle=tHg; ctx.fillRect(M,tY,timeW,dayHdrH);
+  ctx.fillStyle="#fff"; ctx.font=`700 15px ${font}`; ctx.textAlign="center";
+  ctx.fillText("HOR.", M+timeW/2, tY+28);
+
+  ctx.fillStyle="#e8f0fd"; ctx.fillRect(M,tY+dayHdrH,timeW,salaHdrH);
+  ctx.strokeStyle="#bdd4ed"; ctx.lineWidth=1; ctx.strokeRect(M,tY+dayHdrH,timeW,salaHdrH);
 
   TIMES.forEach((t,ti)=>{
     const sy=tY+dayHdrH+salaHdrH+ti*slotH;
-    // alternating subtle bg
-    if(ti%2===0){ ctx.fillStyle="rgba(0,60,180,.04)"; ctx.fillRect(M,sy,timeW,slotH); }
-    ctx.fillStyle="#1a4270"; ctx.font=`700 8.5px ${font}`; ctx.textAlign="center";
-    ctx.fillText(t, M+timeW/2, sy+slotH/2+3);
-    // horizontal grid line
-    ctx.strokeStyle="#bdd4ed"; ctx.lineWidth=.6;
+    ctx.fillStyle=ti%2===0?"#edf4ff":"#f7faff"; ctx.fillRect(M,sy,timeW,slotH);
+    ctx.fillStyle="#1a3a70"; ctx.font=`700 14px ${font}`; ctx.textAlign="center";
+    ctx.fillText(t, M+timeW/2, sy+slotH/2+5);
+    ctx.strokeStyle="#d0e0f5"; ctx.lineWidth=.8;
     ctx.beginPath(); ctx.moveTo(M,sy); ctx.lineTo(LW-M,sy); ctx.stroke();
   });
 
-  // ── Outer table border ──
-  ctx.strokeStyle="#7aaad8"; ctx.lineWidth=1.5;
-  _rrectStroke(ctx,M,tY,LW-M*2,tH,8);
+  ctx.strokeStyle="#7aaad8"; ctx.lineWidth=2.5;
+  _rrectStroke(ctx,M,tY,LW-M*2,tH,12);
 
-  // ── FOOTER ──
-  ctx.fillStyle="#5a82b0"; ctx.font=`400 8px ${font}`; ctx.textAlign="left";
-  ctx.fillText("Centro Clínico de Nutrição · Setor de Nutrição · Anhanguera · Uso interno da equipe", M, LH-10);
+  // ── Footer ──
+  ctx.fillStyle="#7a9abf"; ctx.font=`400 12px ${font}`; ctx.textAlign="left";
+  ctx.fillText("Centro Clínico de Nutrição · Setor de Nutrição · Anhanguera · Uso interno da equipe", M, LH-16);
   ctx.textAlign="right";
-  ctx.fillText(`Semana ${_fd(w[0])} a ${_fd(w[4])} · ${MONTHS[curM].n} 2026`, LW-M, LH-10);
+  ctx.fillText(`Semana ${_fd(w[0])} a ${_fd(w[4])} · ${MONTHS[curM].n} 2026`, LW-M, LH-16);
 
-  // ── Download ──
   const a=document.createElement("a");
   a.download=`Agenda_${_fd(w[0]).replace("/","-")}_${_fd(w[4]).replace("/","-")}_${MONTHS[curM].l}.png`;
   a.href=canvas.toDataURL("image/png",1.0);
@@ -1179,6 +1145,7 @@ function _drawPNG(w){
   toast("✓ Imagem salva!");
 }
 
+  // ── Canvas setup — wider & taller for legibility ──
 function _rrect(ctx,x,y,w,h,r,fill){
   ctx.beginPath();
   ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
