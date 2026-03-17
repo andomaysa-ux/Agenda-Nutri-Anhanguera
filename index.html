@@ -801,9 +801,9 @@ body{
         <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:2px" id="pgRow">
           <button class="stp" id="pg-" onclick="selPg('')">— Nenhum</button>
           <button class="stp" id="pg-pix" onclick="selPg('pix')">Pix</button>
-          <button class="stp" id="pg-din" onclick="selPg('dinheiro')">💵 Dinheiro</button>
-          <button class="stp" id="pg-deb" onclick="selPg('debito')">💳 Débito</button>
-          <button class="stp" id="pg-cre" onclick="selPg('credito')">💳 Crédito</button>
+          <button class="stp" id="pg-dinheiro" onclick="selPg('dinheiro')">💵 Dinheiro</button>
+          <button class="stp" id="pg-debito" onclick="selPg('debito')">💳 Débito</button>
+          <button class="stp" id="pg-credito" onclick="selPg('credito')">💳 Crédito</button>
         </div>
       </div>
       <div class="fld">
@@ -1304,7 +1304,8 @@ async function saveSlot(){
     const vl=parseFloat(document.getElementById("fVal").value)||0;
     const data={p:pac,t:document.getElementById("fTel").value.trim(),
       a:document.getElementById("fAlu").value.trim(),m:document.getElementById("fMon").value.trim(),
-      s:curSt,pg:curPg,vl:vl||undefined};
+      s:curSt,pg:curPg||""};
+    if(vl) data.vl=vl;
     const key=editKey;
     appts[key]=data;
     saveLocal();
